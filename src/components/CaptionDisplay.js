@@ -1,9 +1,15 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 
-const CaptionDisplay = () => (
+const CaptionDisplay = ({ caption, loading }) => (
   <View style={styles.container}>
-    <Text style={styles.placeholder}>Your AI-generated caption will appear here...</Text>
+    {loading ? (
+      <ActivityIndicator size="large" color="#1E90FF" />
+    ) : (
+      <Text style={styles.text}>
+        {caption || 'Your AI-generated caption will appear here...'}
+      </Text>
+    )}
   </View>
 );
 
@@ -15,9 +21,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#222',
     borderRadius: 10,
     padding: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  placeholder: {
-    color: '#888',
+  text: {
+    color: '#FFF',
     fontSize: 16,
   },
 });
